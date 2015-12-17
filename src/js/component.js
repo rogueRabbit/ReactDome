@@ -1,6 +1,10 @@
 
+var liDatas = [
+    {imgSrc:"src/img/travel-1.jpg"},
+    {imgSrc:"src/img/travel-2.jpg"}
+];
+
 var Header = React.createClass({
-    displayName:'Header',
     render: function(){
         return (
             <div className="header">
@@ -15,13 +19,55 @@ var Header = React.createClass({
             </div>
         );
     }
+});
 
+var Banner = React.createClass({
+    render:function(){
+        return (
+            <div className="banner">
+                <img src="src/img/banner-1.png"></img>
+            </div>
+        );
+    }
+});
 
+var TravelList = React.createClass({
+    render:function(){
+        var _liNode = this.props.data.map(function(liData) {
+            return (
+                <li>
+                    <div>
+                        <a>
+                            <img src={liData.imgSrc}></img>
+                        </a>
+                    </div>
+                </li>
+            );
+        });
 
+        return (
+            <div className="travelList">
+            {_liNode}
+            </div>
+        );
+    }
+});
+
+var CommentBox = React.createClass({
+    render:function(){
+        return (
+            <div>
+                <Header />
+                <Banner />
+                <TravelList data={liDatas}/>
+            </div>
+        );
+    }
 });
 
 
+
 ReactDOM.render(
-    <Header/>,
+    <CommentBox/>,
     document.getElementById('wrap')
 );
